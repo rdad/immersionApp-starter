@@ -7,12 +7,13 @@ import FormControl from 'react-bootstrap/FormControl';
 
 const inputMaxLength = 90;
 
-function ModalComment({show}) {
+function ModalComment({show, onClickButtonComment}) {
 
   return (
     <Modal
       size="lg"
       show={show}
+      onHide={()=> onClickButtonComment(false)}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >

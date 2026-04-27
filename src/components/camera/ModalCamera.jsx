@@ -30,7 +30,7 @@ function ModalCamera({show}) {
     const image = webcamRef.current.getScreenshot();
     setImgSrc(image);
 
-    await savePicture(image);
+    //await savePicture(image);
 
     // clear
     setShow(false);

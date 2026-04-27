@@ -11,8 +11,19 @@ import DataFeed from './components/DataFeed';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import Comment from './components/comment/Comment';
+import { useState } from 'react';
 
 function App() {
+
+  // Modal Comment
+  const [showModalComment, setShowModalComment] =useState(false);
+
+  const onClickButtonComment = (value=true)=>{
+    setShowModalComment(value);
+  }
+
+  
 
   return (  
     <>  
@@ -23,7 +34,7 @@ function App() {
           <Navbar.Collapse className="justify-content-end">
             <Stack direction="horizontal" gap={3}>
               <ButtonCamera />
-              <ButtonComment />
+              <ButtonComment onClickButtonComment={onClickButtonComment} />
             </Stack>   
           </Navbar.Collapse>
         </Container>
@@ -32,7 +43,8 @@ function App() {
       <DataFeed />
 
       <ModalComment
-        show={false}
+        show={showModalComment}
+        onClickButtonComment={onClickButtonComment}
       /> 
       <ModalCamera
         show={false}
