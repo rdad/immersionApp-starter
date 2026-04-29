@@ -23,8 +23,6 @@ function App() {
     setShowModalComment(value);
   }
 
-  
-
   return (  
     <>  
       <Navbar fixed="top" className="bg-body-tertiary">
