@@ -6,16 +6,21 @@ import Spinner from 'react-bootstrap/Spinner';
 import FormControl from 'react-bootstrap/FormControl';
 import { useState } from 'react';
 import { Comment } from '../../services/Comment';
+import useSaveNewComment from '../../services/useSaveNewComment';
 
 const inputMaxLength = 90;
 
 function ModalComment({show, onClickButtonComment}) {
 
   const [comment, setComment] = useState('');
+  const saveComment = useSaveNewComment();
 
   const onClickSendButton = ()=>{
+
+    if(comment.length === 0)  return;
+    
     const newComment = new Comment(comment);
-    console.log(newComment.toJSON());
+    saveComment(newComment);
   }
 
   return (
