@@ -7,7 +7,22 @@ import Alert from 'react-bootstrap/Alert';
 import ScrollToTop from "react-scroll-to-top";
 import noData from '../assets/no-data.png';
 
-function DataFeed() {
+function DataFeed({list}) {
+
+  let content;
+
+  if(list.length === 0){
+    content = <img src={noData} />; 
+  }else{
+    content = list.map(object=>{
+      if(object.type === 'comment'){
+        return <Comment key={object.id} {...object} />
+      }
+      if(object.type === 'picture'){
+        return <Picture key={object.id} {...object} />
+      }
+    })
+  }
 
   return (
     <Container style={{marginTop: '80px'}}>
@@ -16,9 +31,8 @@ function DataFeed() {
         color="#01B9FD"
         smooth 
       />
-      <Stack gap={3}>
-        <Comment key={1} content="comment exemple" />
-        <Picture key={2} content="https://i0.wp.com/impactify.io/wp-content/uploads/2024/05/placeholder-5.png?resize=768%2C512&ssl=1" />
+      <Stack gap={3}>      
+        { content }
       </Stack>
     </Container> 
   );

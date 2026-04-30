@@ -12,9 +12,17 @@ import DataFeed from './components/DataFeed';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Comment from './components/comment/Comment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useSubscribeToNewContent from './services/useSubscribeToNewContent';
 
 function App() {
+
+  const [content, setContent] = useState([]);
+  const subscribe = useSubscribeToNewContent();
+
+  useEffect(()=>{
+    subscribe(setContent);
+  }, []);
 
   // Modal Comment
   const [showModalComment, setShowModalComment] =useState(false);
@@ -38,9 +46,10 @@ function App() {
         </Container>
       </Navbar>
 
-      <DataFeed />
+      <DataFeed list={content} />
 
       <ModalComment
+        setShowModalComment={setShowModalComment}
         show={showModalComment}
         onClickButtonComment={onClickButtonComment}
       /> 

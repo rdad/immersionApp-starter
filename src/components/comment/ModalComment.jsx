@@ -10,7 +10,7 @@ import useSaveNewComment from '../../services/useSaveNewComment';
 
 const inputMaxLength = 90;
 
-function ModalComment({show, onClickButtonComment}) {
+function ModalComment({show, setShowModalComment, onClickButtonComment}) {
 
   const [comment, setComment] = useState('');
   const saveComment = useSaveNewComment();
@@ -21,6 +21,7 @@ function ModalComment({show, onClickButtonComment}) {
     
     const newComment = new Comment(comment);
     saveComment(newComment);
+    setShowModalComment(false);
   }
 
   return (

@@ -3,6 +3,7 @@ export class Content {
     this.content = content;
     this.type = type;
     this.created = 0;
+    this.id = 0;
   }
  
   toJSON(){
@@ -11,5 +12,12 @@ export class Content {
       type: this.type,
       created: this.created
     }
+  }
+
+  populate(data){
+    this.content = data.content;
+    this.type = data.type;
+    this.created = data.created;
+    this.id = data.id;
   }
 }
